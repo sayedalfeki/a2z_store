@@ -5,8 +5,13 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text('A to Z store'),
+    return Scaffold(
+      body: Center(
+        child: Text('A to Z store',style: TextStyle(
+          fontSize: 50,
+          fontWeight: FontWeight.bold
+        ),),
+      ),
     );
   }
 }
