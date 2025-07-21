@@ -11,7 +11,7 @@ class LightTheme
    ),
     inputDecorationTheme: InputDecorationTheme(
       border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(25.r),
+        borderRadius: BorderRadius.circular(30.r),
         borderSide: BorderSide(color: AppColor.mainColor),
         gapPadding: 16.w
       ),

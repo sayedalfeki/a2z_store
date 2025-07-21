@@ -7,11 +7,11 @@ import 'package:a_to_z_store/feature/start/ui/view_model/start_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import '../../../product_home/ui/ad/view/ads_widget.dart';
 class StartPage extends StatelessWidget {
    StartPage({super.key});
    StartViewModel startViewModel=StartViewModel();
-   List<Widget> pages=[];
+  // List<Widget> pages=[AdsWidget()];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -54,6 +54,10 @@ class StartPage extends StatelessWidget {
                     ],
                   ),
                 ),
+
+                Container(
+                    height: 200.h,
+                    child: AdsWidget())
               ],
             ),
           ) ,

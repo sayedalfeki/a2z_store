@@ -14,4 +14,13 @@ class AppStyle
     fontSize: 18.sp,
     color: AppColor.mainColor
   );
+  static  TextStyle blueBold18=GoogleFonts.acme(
+      fontSize: 18.sp,
+      color: AppColor.mainColor
+  );
+  static  TextStyle whiteBold18=GoogleFonts.nobile(
+      fontSize: 18.sp,
+      color: AppColor.whiteColor
+  );
+
 }
