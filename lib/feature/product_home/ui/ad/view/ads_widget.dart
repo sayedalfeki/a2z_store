@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/utils/re_usable_widget/custome_container.dart';
 import '../view_model/ad_state.dart';
 import '../view_model/ad_view_model.dart';
+import 'discount_widget.dart';
 class AdsWidget extends StatelessWidget {
   AdsWidget({super.key});
   final AdViewModel adViewModel = AdViewModel();
@@ -25,57 +26,39 @@ class AdsWidget extends StatelessWidget {
             itemBuilder:
                 (context, index) => CustomContainer(
                   borderColor: AppColor.transparentColor,
-                  // padding: 0,
-                  width: double.infinity,
-                  height: 200.h,
+                   padding: 0,
+                 // width: double.infinity,
+                 // height: 200.h,
                   image: DecorationImage(
                     image: AssetImage(adViewModel.images[index]),
                     fit: BoxFit.cover,
                   ),
                   child:
-
                   Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment:
-                        index % 2 == 0
-                            ? CrossAxisAlignment.start
-                            : CrossAxisAlignment.end,
+                    index % 2 == 0
+                        ? CrossAxisAlignment.start
+                        : CrossAxisAlignment.end,
                     children: [
-                      Text(
-                        'up to 25% OFF',
-                        style:
-                            index % 2 == 0
-                                ? AppStyle.blueBold18
-                                : AppStyle.whiteBold18,
-                      ),
-                      Text(
-                        'For all Headphones & AirPods',
-                        style:
-                            index % 2 == 0
-                                ? AppStyle.blueBold18
-                                : AppStyle.whiteBold18,
-                      ),
-                      CustomContainer(
-                        borderColor: AppColor.transparentColor,
-                        color: AppColor.mainColor,
-                        child: Text('shop now', style: AppStyle.whiteBold18),
-                      ),
+                     Expanded(child: DiscountWidget(index: index,)),
+
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children:
-                            adViewModel.images.map((e) {
-                              return CustomContainer(
-                                padding: 0,
-                                radius: 25.r,
-                                width: 10.w,
-                                height: 10.h,
-                                color:
-                                    index == adViewModel.images.indexOf(e)
-                                        ? AppColor.mainColor
-                                        : AppColor.whiteColor,
-                              );
-                            }).toList(),
+                        adViewModel.images.map((e) {
+                          return CustomContainer(
+                            margin:2,
+                            padding: 0,
+                            radius: 50.r,
+                            width: 12.w,
+                            height:12.h,
+                            color:
+                            index == adViewModel.images.indexOf(e)
+                                ? AppColor.mainColor
+                                : AppColor.whiteColor,
+                          );
+                        }).toList(),
                       ),
                     ],
                   ),

@@ -1,3 +1,4 @@
+import 'package:a_to_z_store/test_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
       builder:(context, child) =>  MaterialApp(
         theme: LightTheme.lightTheme,
       themeMode: ThemeMode.light,
-      home: StartPage(),
+      home:StartPage(),
       ),
     );
   }

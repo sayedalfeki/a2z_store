@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class AppStyle
 {
-  static  TextStyle blackNormal14=GoogleFonts.acme(
+  static  TextStyle blackNormal14=GoogleFonts.cairo(
     color:AppColor.black26Color,
     fontSize: 14.sp ,
     fontWeight: FontWeight.normal
@@ -14,11 +14,15 @@ class AppStyle
     fontSize: 18.sp,
     color: AppColor.mainColor
   );
-  static  TextStyle blueBold18=GoogleFonts.acme(
+  static  TextStyle blueBold18=GoogleFonts.cairo(
       fontSize: 18.sp,
       color: AppColor.mainColor
   );
-  static  TextStyle whiteBold18=GoogleFonts.nobile(
+  static  TextStyle blueNormal14=GoogleFonts.cairo(
+      fontSize: 14.sp,
+      color: AppColor.mainColor
+  );
+  static  TextStyle whiteBold18=GoogleFonts.cairo(
       fontSize: 18.sp,
       color: AppColor.whiteColor
   );
