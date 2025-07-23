@@ -1,17 +1,17 @@
 import 'package:a_to_z_store/core/utils/colors/color.dart';
 import 'package:a_to_z_store/core/utils/constants/strings.dart';
 import 'package:a_to_z_store/core/utils/styles/styles.dart';
+import 'package:a_to_z_store/feature/product_home/ui/product_home_page/view/product_home_page.dart';
 import 'package:a_to_z_store/feature/start/ui/view/start_bottom_navigation.dart';
 import 'package:a_to_z_store/feature/start/ui/view_model/start_state.dart';
 import 'package:a_to_z_store/feature/start/ui/view_model/start_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 class StartPage extends StatelessWidget {
    StartPage({super.key});
    StartViewModel startViewModel=StartViewModel();
-   List<Widget> pages=[];
+  // List<Widget> pages=[AdsWidget()];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -22,11 +22,13 @@ class StartPage extends StatelessWidget {
         },
         builder:(context, state) =>  Scaffold(
           appBar: AppBar(
+            //backgroundColor: Colors.red,
+            toolbarHeight:50.h,
             title:   Text(AppStrings.appSlogan,
               style: AppStyle.sloganStyle,),
           ),
           body:Padding(
-            padding:EdgeInsets.all(8.0.w),
+            padding:EdgeInsets.only(left: 8,right: 8),
             child: Column(
               children: [
                 Visibility(
@@ -54,6 +56,7 @@ class StartPage extends StatelessWidget {
                     ],
                   ),
                 ),
+                ProductHomePage()
               ],
             ),
           ) ,
