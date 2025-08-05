@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class LightTheme
 {
  static ThemeData lightTheme=ThemeData(
+   scaffoldBackgroundColor: AppColor.blackColor,
    iconTheme: IconThemeData(
      color: AppColor.mainColor
    ),

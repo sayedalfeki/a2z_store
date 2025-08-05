@@ -1,4 +1,4 @@
-import 'package:a_to_z_store/feature/product_home/ui/brands/domain/category_product.dart';
+import 'package:a_to_z_store/feature/home/ui/brands/domain/category_product.dart';
 
 class ProductDto extends CategoryProductEntity {
   ProductDto({
@@ -18,10 +18,6 @@ class ProductDto extends CategoryProductEntity {
   }
   int? results;
   Metadata? metadata;
-
-
-
-
 }
 
 class ProductDataDto extends CategoryProductDataEntity {
@@ -30,7 +26,7 @@ class ProductDataDto extends CategoryProductDataEntity {
       this.images, 
       this.subcategory, 
       this.ratingsQuantity, 
-      this.id, 
+      super.id,
       this.title, 
       this.slug, 
       this.description, 
@@ -42,7 +38,7 @@ class ProductDataDto extends CategoryProductDataEntity {
       this.ratingsAverage, 
       this.createdAt, 
       this.updatedAt, 
-      this.productId,});
+      super.productId,});
 
   ProductDataDto.fromJson(dynamic json) {
     sold = json['sold'];
@@ -72,7 +68,6 @@ class ProductDataDto extends CategoryProductDataEntity {
   List<String>? images;
   List<Subcategory>? subcategory;
   int? ratingsQuantity;
-  String? id;
   String? title;
   String? slug;
   String? description;
@@ -83,7 +78,7 @@ class ProductDataDto extends CategoryProductDataEntity {
   num? ratingsAverage;
   String? createdAt;
   String? updatedAt;
-  String? productId;
+
 
 
 
