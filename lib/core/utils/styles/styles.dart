@@ -26,5 +26,29 @@ class AppStyle
       fontSize: 18.sp,
       color: AppColor.whiteColor
   );
-
+  static  TextStyle whiteNormal15=TextStyle(
+      fontSize: 15.sp,
+      color: AppColor.whiteColor,
+      fontWeight: FontWeight.normal
+  );
+  static  TextStyle whiteBold24=TextStyle(
+      fontSize: 24.sp,
+      color: AppColor.whiteColor,
+      fontWeight: FontWeight.bold
+  );
+  static  TextStyle blackRegular16=TextStyle(
+      fontSize: 16.sp,
+      color: AppColor.mainColor,
+      fontWeight: FontWeight.w400
+  );
+  static  TextStyle blackNormal20=TextStyle(
+      fontSize:20.sp,
+      color: AppColor.mainColor,
+      fontWeight: FontWeight.normal
+  );
+  static  TextStyle yellowRoboto14=TextStyle(
+      fontSize: 14.sp,
+      color: AppColor.appYellowColor,
+      fontWeight: FontWeight.w500
+  );
 }

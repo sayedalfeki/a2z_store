@@ -15,6 +15,7 @@ class AppErrorWidget extends StatelessWidget {
         child: Column(
           children: [
             Expanded(child: SingleChildScrollView(child: Text(error))),
+            SizedBox(height: 5,),
             Visibility(
                 visible: onPressed!=null?true:false,
                 child: ElevatedButton(onPressed: onPressed, child: Text('retry')))
