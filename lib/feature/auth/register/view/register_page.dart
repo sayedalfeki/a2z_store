@@ -1,4 +1,5 @@
 
+import 'package:a_to_z_store/core/di/di.dart';
 import 'package:a_to_z_store/core/utils/images/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,12 +18,7 @@ import '../view_model/register_view_model.dart';
 
 class RegisterPage extends StatelessWidget {
    RegisterPage({super.key});
-  final RegisterViewModel registerViewModel=RegisterViewModel(
-    RegisterUseCase(
-      registerRepository: RegisterRepositoryImpl
-        (registerDataSource:RegisterRemoteDioDataSource(ApiManager()) )
-    )
-  );
+  final RegisterViewModel registerViewModel=getIt<RegisterViewModel>();
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<RegisterViewModel,RegisterState>(

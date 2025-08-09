@@ -13,5 +13,6 @@ class AppRoutes
   static const String categoriesRoute='categories';
   static const String wishRoute='wish';
   static const String accountRoute='account';
+  static const String cartRoute='cart';
 
 }

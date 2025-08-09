@@ -5,9 +5,9 @@ abstract class SingleProductState{}
  class SingleProductInitState extends SingleProductState{}
  class SingleProductLoadingState extends SingleProductState{}
  class SingleProductSuccessState extends SingleProductState{
-  final SingleProductEntity? productDataDto;
+  final SingleProductEntity? singleProduct;
 
-  SingleProductSuccessState({required this.productDataDto});
+  SingleProductSuccessState({required this.singleProduct});
  }
 class SingleProductErrorState extends SingleProductState{
   final String errorMessage;

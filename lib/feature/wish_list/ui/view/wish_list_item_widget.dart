@@ -1,20 +1,26 @@
+import 'package:a_to_z_store/config/routes/routes.dart';
 import 'package:a_to_z_store/core/utils/colors/color.dart';
 import 'package:a_to_z_store/core/utils/images/images.dart';
 import 'package:a_to_z_store/core/utils/re_usable_widget/custome_container.dart';
 import 'package:a_to_z_store/core/utils/re_usable_widget/image_icon_widget.dart';
 import 'package:a_to_z_store/core/utils/styles/styles.dart';
+import 'package:a_to_z_store/feature/start/ui/view_model/start_view_model.dart';
 import 'package:a_to_z_store/feature/wish_list/domain/wish_list_entity.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../product/domain/Single_product_entity.dart';
 class WishListItemWidget extends StatelessWidget {
   const WishListItemWidget({super.key,required this.wishListDataEntity,
   required this.onIconClicked,required this.isFavorite
   });
- final WishListDataEntity wishListDataEntity;
+ final SingleProductDataEntity wishListDataEntity;
  final void Function() onIconClicked;
  final bool isFavorite;
   @override
   Widget build(BuildContext context) {
+    StartViewModel startViewModel=BlocProvider.of(context);
     return CustomContainer(
       padding: 0,
       height:130.h,
@@ -94,18 +100,23 @@ class WishListItemWidget extends StatelessWidget {
                           ),
                         ],
                       ),
-                      Container(
-                        padding: EdgeInsets.all(8),
-                       margin: EdgeInsets.all(4),
-                       decoration: BoxDecoration(
-                         color: AppColor.mainColor,
-                         borderRadius: BorderRadius.circular(16)
-                       ),
-                        child: Text('Add to cart',
-                        style: AppStyle.whiteNormal15.copyWith(
-                          color: AppColor.whiteColor,
-                          fontSize: 12
-                        ),
+                      GestureDetector(
+                        onTap: () {
+                          startViewModel.pushToCart();
+                        },
+                        child: Container(
+                          padding: EdgeInsets.all(8),
+                         margin: EdgeInsets.all(4),
+                         decoration: BoxDecoration(
+                           color: AppColor.mainColor,
+                           borderRadius: BorderRadius.circular(16)
+                         ),
+                          child: Text('Add to cart',
+                          style: AppStyle.whiteNormal15.copyWith(
+                            color: AppColor.whiteColor,
+                            fontSize: 12
+                          ),
+                          ),
                         ),
                       )
                     ],

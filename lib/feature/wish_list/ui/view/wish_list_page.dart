@@ -13,7 +13,7 @@ class WishListPage extends StatelessWidget {
     WishListViewModel wishListViewModel=BlocProvider.of<WishListViewModel>(context);
     TokenViewModel tokenViewModel=BlocProvider.of<TokenViewModel>(context);
     return BlocConsumer<WishListViewModel,WishListState>(
-      bloc: wishListViewModel..getWishList(token:tokenViewModel.token??''),
+      bloc: wishListViewModel..getWishList(),
       listener: (context, state) {
 
       },
@@ -25,9 +25,9 @@ class WishListPage extends StatelessWidget {
                   
                 wishListViewModel.wishes[index],
                 onIconClicked: () {
-                 wishListViewModel.removeFromWishList(token:tokenViewModel.token??'',
+                 wishListViewModel.removeFromWishList(
                      productId:wishListViewModel.wishes[index].productId??'');
-                 wishListViewModel.getWishList(token:tokenViewModel.token??'');
+                 wishListViewModel.getWishList();
                 }, isFavorite: true
                 ,);
             }, ),

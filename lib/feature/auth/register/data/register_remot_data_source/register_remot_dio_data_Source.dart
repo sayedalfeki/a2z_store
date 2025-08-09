@@ -1,4 +1,6 @@
 
+import 'package:injectable/injectable.dart';
+
 import '../../../../../core/api/api_end_points.dart';
 
 import '../../../../../core/api/api_manager.dart';
@@ -6,7 +8,7 @@ import '../../../../../core/data_response/data_response.dart';
 import '../../domain/register_data_source.dart';
 import '../../request_entity/register_request_entity.dart';
 import '../register_dto.dart';
-
+@Injectable(as:RegisterDataSource )
 class RegisterRemoteDioDataSource extends RegisterDataSource
 {
   late ApiManager apiManager;

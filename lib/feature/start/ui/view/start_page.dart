@@ -3,9 +3,10 @@ import 'package:a_to_z_store/core/utils/colors/color.dart';
 import 'package:a_to_z_store/core/utils/constants/strings.dart';
 import 'package:a_to_z_store/core/utils/styles/styles.dart';
 import 'package:a_to_z_store/feature/account/view/account_page.dart';
+import 'package:a_to_z_store/feature/cart/ui/view/cart_page.dart';
 import 'package:a_to_z_store/feature/categories/ui/view/category_page.dart';
 import 'package:a_to_z_store/feature/products/ui/view/products_page.dart';
-import 'package:a_to_z_store/feature/home/ui/product_home_page/view/product_home_page.dart';
+import 'package:a_to_z_store/feature/home/ui/product_home_page/view/home_page.dart';
 import 'package:a_to_z_store/feature/start/ui/view/start_bottom_navigation.dart';
 import 'package:a_to_z_store/feature/start/ui/view_model/start_state.dart';
 import 'package:a_to_z_store/feature/start/ui/view_model/start_view_model.dart';
@@ -76,7 +77,8 @@ class StartPage extends StatelessWidget {
                                 ),
                               )),
                               IconButton(onPressed: () {
-                              
+                              //Navigator.pushNamed(context,AppRoutes.cartRoute);
+                             startViewModel.pushToCart();
                               }, icon: Icon(Icons.shopping_cart_outlined,
                                 color:AppColor.mainColor ,size:30.w,))
                             ],
@@ -114,6 +116,9 @@ class StartPage extends StatelessWidget {
                       else if (settings.name ==AppRoutes.productsRoute) {
                         page = ProductsPage(); // أي صفحة تانية عايز تروح ليها
                       }
+                      else if(settings.name==AppRoutes.cartRoute){
+                        page=CartPage();
+                       }
                       else {
 
                         page = ProductPage(); // أي صفحة تانية عايز تروح ليها

@@ -13,7 +13,7 @@ class SingleProductViewModel extends Cubit<SingleProductState>
 final response=await singleProductUseCase.getProduct(productId);
 if(response.response!=null)
 {
-  emit(SingleProductSuccessState(productDataDto: response.response));
+  emit(SingleProductSuccessState(singleProduct: response.response));
 }
 else
 {

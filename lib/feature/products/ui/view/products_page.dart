@@ -3,9 +3,9 @@
 import 'package:a_to_z_store/config/routes/routes.dart';
 import 'package:a_to_z_store/core/utils/re_usable_widget/error_widget.dart';
 import 'package:a_to_z_store/core/utils/re_usable_widget/loading_widget.dart';
-import 'package:a_to_z_store/feature/home/ui/brands/domain/category_product.dart';
+
 import 'package:a_to_z_store/feature/products/ui/view/products_item_widget.dart';
-import 'package:a_to_z_store/feature/home/ui/brands/view_model/category_product_state.dart';
+
 import 'package:a_to_z_store/feature/start/ui/view_model/start_view_model.dart';
 import 'package:a_to_z_store/feature/token_view_model.dart';
 import 'package:a_to_z_store/feature/wish_list/ui/view_model/wish_list_state.dart';
@@ -13,21 +13,27 @@ import 'package:a_to_z_store/feature/wish_list/ui/view_model/wish_list_view_mode
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/di/di.dart';
-import '../../../home/ui/brands/view_model/category-product_view_model.dart';
+import '../../../cart/ui/view_model/cart_view_model.dart';
+
+import '../../../product/domain/Single_product_entity.dart';
 import '../../../wish_list/domain/wish_list_entity.dart';
+import '../../domain/products_entity.dart';
+import '../view_model/products_view_model.dart';
+import '../view_model/products_state.dart';
 class ProductsPage extends StatelessWidget {
    ProductsPage({super.key});
-  final CategoryProductViewModel categoryProductViewModel =getIt<CategoryProductViewModel>();
-  List<CategoryProductDataEntity> products=[];
-  List<WishListDataEntity> wishes=[];
+  final ProductsViewModel categoryProductViewModel =getIt<ProductsViewModel>();
+  List<SingleProductDataEntity> products=[];
+  List<SingleProductDataEntity> wishes=[];
   bool isLoading=false;
   @override
   Widget build(BuildContext context) {
     StartViewModel startViewModel=BlocProvider.of<StartViewModel>(context);
     TokenViewModel tokenViewModel=BlocProvider.of<TokenViewModel>(context);
     WishListViewModel wishViewModel=BlocProvider.of<WishListViewModel>(context);
+    CartViewModel cartViewModel=BlocProvider.of<CartViewModel>(context);
     return BlocConsumer<WishListViewModel,WishListState>(
-      bloc: wishViewModel..getWishList(token: tokenViewModel.token??''),
+      bloc: wishViewModel..getWishList(),
       listener: (context, state) {
         if(state is WishListSuccessState)
         {
@@ -37,25 +43,25 @@ class ProductsPage extends StatelessWidget {
         if(state is WishListAddingSuccessState)
         {
           isLoading=true;
-          wishViewModel.getWishList(token: tokenViewModel.token??'');
+          wishViewModel.getWishList();
         }
       },
       builder:(context, state) =>
           state is WishListErrorState?
         AppErrorWidget(error: state.errorMessage,
     onPressed: () {
-      wishViewModel.getWishList(token: tokenViewModel.token??'');
+      wishViewModel.getWishList();
     },
     ): BlocConsumer(
-        bloc: categoryProductViewModel..getCategoryProducts(''),
+        bloc: categoryProductViewModel..getProducts(''),
         listener: (context, state) {
-          if(state is CategoryProductSuccessState)
+          if(state is ProductsSuccessState)
           {
             products=state.data;
           }
         },
         builder:(context, state) =>
-        state is CategoryProductErrorState?
+        state is ProductsErrorState?
           AppErrorWidget(error: state.errorMessage,
       onPressed: () {
 
@@ -64,7 +70,7 @@ class ProductsPage extends StatelessWidget {
       GridView.builder(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount
             (crossAxisCount:2,
-          childAspectRatio:.75
+          childAspectRatio:.5
           ),
           itemCount:products.length,
           itemBuilder: (context, index) {
@@ -79,15 +85,18 @@ class ProductsPage extends StatelessWidget {
               isFavorite: wishViewModel.isFavorite(products[index].productId??'',wishes),
               onFavoriteClicked: () {
                 wishViewModel.isFavorite(products[index].productId??'',wishes)?
-                wishViewModel.removeFromWishList(token:tokenViewModel.token??''
-                    , productId:products[index].productId??'' ):
-                wishViewModel.addToWishList(token:tokenViewModel.token??''
-                    , productId:products[index].productId??'' );
+                wishViewModel.removeFromWishList(
+                    productId:products[index].productId??'' ):
+                wishViewModel.addToWishList(
+                     productId:products[index].productId??'' );
+              },
+              onAddToCartClicked: () {
+                cartViewModel.addToCart(productId: products[index].productId??'');
               },
               ),
           );
         },):
-        state is CategoryProductLoadingState?
+        state is ProductsLoadingState?
               LoadingWidget():
         Text('no products founded')
       ),

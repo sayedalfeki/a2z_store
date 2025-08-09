@@ -4,16 +4,18 @@ import 'package:a_to_z_store/feature/wish_list/domain/wish_list_use_case.dart';
 import 'package:a_to_z_store/feature/wish_list/ui/view_model/wish_list_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+
+import '../../../product/domain/Single_product_entity.dart';
 @injectable
 class WishListViewModel extends Cubit<WishListState>
 {
   final WishListUseCase wishListUseCase;
 
   WishListViewModel({required this.wishListUseCase}):super(WishListInitState());
-  List<WishListDataEntity> wishes=[];
-  addToWishList({required String token,required String productId})async
+  List<SingleProductDataEntity> wishes=[];
+  addToWishList({required String productId})async
   {
-    final response=await wishListUseCase.addToWishList(token: token, productId: productId);
+    final response=await wishListUseCase.addToWishList(productId: productId);
    _emitResponse(response);
     // if(response.response!=null)
     // {
@@ -24,9 +26,9 @@ class WishListViewModel extends Cubit<WishListState>
     //   emit(WishListErrorState(errorMessage: response.error??''));
     // }
   }
-  Future<void> getWishList({required String token})async
+  Future<void> getWishList()async
   {
-    final response=await wishListUseCase.getWishList(token: token);
+    final response=await wishListUseCase.getWishList();
     //_emitResponse(response);
     if(response.response!=null)
     {
@@ -38,9 +40,9 @@ class WishListViewModel extends Cubit<WishListState>
       emit(WishListErrorState(errorMessage: response.error??''));
     }
   }
-  removeFromWishList({required String token,required String productId})async
+  removeFromWishList({required String productId})async
   {
-    final response=await wishListUseCase.deleteFromWishList(token: token, productId: productId);
+    final response=await wishListUseCase.deleteFromWishList(productId: productId);
     _emitResponse(response);
     // if(response.response!=null)
     // {
@@ -62,7 +64,7 @@ class WishListViewModel extends Cubit<WishListState>
       emit(WishListErrorState(errorMessage: response.error??''));
     }
   }
-  isFavorite(String productId,List<WishListDataEntity> wishesList)
+  isFavorite(String productId,List<SingleProductDataEntity> wishesList)
   {
     bool result=false;
     wishesList.forEach((element) {

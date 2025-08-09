@@ -1,3 +1,4 @@
+import 'package:a_to_z_store/core/di/di.dart';
 import 'package:a_to_z_store/core/utils/images/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,11 +16,7 @@ import '../view_model/login_state.dart';
 import '../view_model/login_view_model.dart';
 class LoginPage extends StatelessWidget {
    LoginPage({super.key});
- final LoginViewModel loginViewModel=LoginViewModel(
-   LoginUseCase(
-     LoginRepositoryImpl(LoginRemoteDataSourceDioImp(ApiManager()))
-   )
- );
+ final LoginViewModel loginViewModel=getIt<LoginViewModel>();
   @override
   Widget build(BuildContext context) {
     double height=16.h;

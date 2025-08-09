@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 import '../domain/forget_password_use_case.dart';
 import 'forget_password_state.dart';
-
+@injectable
 class ForgetPassWordViewModel extends Cubit<ForgetPassWordState> {
   ForgetPassWordUseCase forgetPassWordUseCase;
   ForgetPassWordViewModel(this.forgetPassWordUseCase)

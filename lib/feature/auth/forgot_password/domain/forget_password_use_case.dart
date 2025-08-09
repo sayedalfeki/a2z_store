@@ -1,9 +1,10 @@
 
 import 'package:a_to_z_store/core/data_response/data_response.dart';
+import 'package:injectable/injectable.dart';
 
 import 'forget_password_entity.dart';
 import 'forget_password_repository.dart';
-
+@injectable
 class ForgetPassWordUseCase {
   ForgetPassWordRepository forgetPassWordRepository;
 

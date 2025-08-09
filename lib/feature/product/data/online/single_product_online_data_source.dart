@@ -1,5 +1,6 @@
 import 'package:a_to_z_store/core/api/api_end_points.dart';
 import 'package:a_to_z_store/core/api/api_manager.dart';
+import 'package:a_to_z_store/feature/product/data/single_product_dto.dart';
 import 'package:a_to_z_store/feature/product/domain/Single_product_entity.dart';
 import 'package:injectable/injectable.dart';
 
@@ -11,7 +12,7 @@ class SingleProductOnLineDataSource extends SingleProductDataSource
 {
   final ApiManager apiManager;
   SingleProductOnLineDataSource({required this.apiManager});
-  Future<DataResponse<SingleProductEntity>> getProduct(String productId)async
+  Future<DataResponse<SingleProductDto>> getProduct(String productId)async
   {
     try
     {
@@ -25,7 +26,7 @@ class SingleProductOnLineDataSource extends SingleProductDataSource
         return DataResponse(error: 'client error: ${response.statusMessage}');
       }
       print(response.data);
-      SingleProductEntity productDataDto=SingleProductEntity.fromJson(response.data);
+      SingleProductDto productDataDto=SingleProductDto.fromJson(response.data);
       return DataResponse(response: productDataDto);
     }catch(e,s)
     {

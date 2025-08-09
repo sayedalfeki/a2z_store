@@ -4,10 +4,10 @@ import 'package:a_to_z_store/feature/wish_list/domain/wish_list_entity.dart';
 
 abstract class WishListRepository
 {
-  Future<DataResponse<WishListAddEntity>> addToWishList({required String token,
+  Future<DataResponse<WishListAddEntity>> addToWishList({
     required String productId});
-  Future<DataResponse<WishListEntity>> getWishList({required String token});
-  Future<DataResponse<WishListAddEntity>> deleteFromWishList({required String token,
+  Future<DataResponse<WishListEntity>> getWishList();
+  Future<DataResponse<WishListAddEntity>> deleteFromWishList({
     required String productId
   });
 }

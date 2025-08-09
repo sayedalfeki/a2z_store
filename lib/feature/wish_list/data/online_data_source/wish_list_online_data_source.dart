@@ -12,7 +12,7 @@ class WishListOnlineDataSource extends WishListDataSource
   final ApiManager apiManager;
   WishListOnlineDataSource({required this.apiManager});
   @override
-  Future<DataResponse<WishListAddDto>> addToWishList({required String token,
+  Future<DataResponse<WishListAddDto>> addToWishList({
     required String productId}) async{
    try
    {
@@ -20,9 +20,9 @@ class WishListOnlineDataSource extends WishListDataSource
        ApiEndPoints.wishListPath,data: {
          'productId':productId
      },
-       header: {
-         'token':token
-       }
+       // header: {
+       //   'token':token
+       // }
      );
      return _getResponse(response);
      // if(response.statusCode!>=500&&response.statusCode!<400)
@@ -46,14 +46,14 @@ class WishListOnlineDataSource extends WishListDataSource
    }
   }
   @override
-  Future<DataResponse<WishListDto>> getWishList({required String token}) async{
+  Future<DataResponse<WishListDto>> getWishList() async{
     try
     {
       final response=await apiManager.get(
           ApiEndPoints.wishListPath,
-          header: {
-            'token':token
-          }
+          // header: {
+          //   'token':token
+          // }
       );
       if(response.statusCode!>=500&&response.statusCode!<400)
       {
@@ -76,15 +76,15 @@ class WishListOnlineDataSource extends WishListDataSource
     }
   }
   @override
-  Future<DataResponse<WishListAddDto>> deleteFromWishList({required String token,
+  Future<DataResponse<WishListAddDto>> deleteFromWishList({
     required String productId}) async{
     try
     {
       final response=await apiManager.delete(
           '${ApiEndPoints.wishListPath}/$productId',
-          header: {
-            'token':token
-          }
+          // header: {
+          //   'token':token
+          // }
       );
       return _getResponse(response);
     }catch(e,s)

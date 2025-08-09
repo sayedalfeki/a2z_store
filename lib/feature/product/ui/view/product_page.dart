@@ -13,7 +13,10 @@ import 'package:a_to_z_store/feature/wish_list/ui/view_model/wish_list_state.dar
 import 'package:a_to_z_store/feature/wish_list/ui/view_model/wish_list_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../core/utils/re_usable_widget/counter_widget.dart';
+import '../../../cart/ui/view_model/cart_view_model.dart';
 import '../../../wish_list/domain/wish_list_entity.dart';
+import '../../domain/Single_product_entity.dart';
 class ProductPage extends StatefulWidget {
   const ProductPage({super.key});
   @override
@@ -22,18 +25,19 @@ class ProductPage extends StatefulWidget {
 class _ProductPageState extends State<ProductPage> {
   int sizeIndex = 2;
   int colorIndex = 2;
-  int counter = 1;
+  int counter = 0;
   SingleProductViewModel singleProductViewModel =
       getIt<SingleProductViewModel>();
-  List<WishListDataEntity> wishes=[];
+  List<SingleProductDataEntity> wishes=[];
   @override
   Widget build(BuildContext context) {
     String productId = ModalRoute.of(context)!.settings.arguments as String;
     TokenViewModel tokenViewModel=BlocProvider.of<TokenViewModel>(context);
     WishListViewModel wishViewModel=BlocProvider.of<WishListViewModel>(context);
+    CartViewModel cartViewModel=BlocProvider.of<CartViewModel>(context);
     //print(productId);
     return BlocConsumer(
-      bloc: wishViewModel..getWishList(token: tokenViewModel.token??''),
+      bloc: wishViewModel..getWishList(),
       listener: (context, state) {
         if(state is WishListSuccessState)
         {
@@ -41,16 +45,16 @@ class _ProductPageState extends State<ProductPage> {
         }
         if(state is WishListAddingSuccessState)
         {
-          wishViewModel.getWishList(token: tokenViewModel.token??'');
+          wishViewModel.getWishList();
         }
       },
       builder:(context, state) =>
           state is WishListErrorState?
         AppErrorWidget(error: state.errorMessage,
     onPressed: () {
-      wishViewModel.getWishList(token: tokenViewModel.token??'');
+      wishViewModel.getWishList();
     },
-    ): BlocConsumer(
+    ): BlocConsumer<SingleProductViewModel,SingleProductState>(
         bloc: singleProductViewModel..getProduct(productId),
         listener: (context, state) {},
         builder:
@@ -83,16 +87,16 @@ class _ProductPageState extends State<ProductPage> {
                           children: [
                             Expanded(
                               child: ProductImagesWidget(
-                                images: state.productDataDto?.data?.images ?? [],
+                                images: state.singleProduct?.data?.images ?? [],
                                 isFavorite:wishViewModel.isFavorite(productId,
                                     wishes),
                                 onFavoriteClicked: () {
                                   print('on favorite clicked');
                                   !wishViewModel.isFavorite(productId,
                                       wishes)?
-                                      wishViewModel.addToWishList(token:tokenViewModel.token??'',
+                                      wishViewModel.addToWishList(
                                           productId: productId):
-                                      wishViewModel.removeFromWishList(token: tokenViewModel.token??'',
+                                      wishViewModel.removeFromWishList(
                                           productId: productId);
                                 },
                               ),
@@ -106,30 +110,33 @@ class _ProductPageState extends State<ProductPage> {
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
                                     nameWidget(
-                                      state.productDataDto?.data?.title ?? '',
-                                      state.productDataDto?.data?.price ?? 0,
+                                      state.singleProduct?.data?.title ?? '',
+                                      state.singleProduct?.data?.price ?? 0,
                                     ),
                                     rateWidget(
-                                      state.productDataDto?.data?.sold ?? 0,
+                                      state.singleProduct?.data?.sold ?? 0,
                                       state
-                                              .productDataDto
+                                              .singleProduct
                                               ?.data
                                               ?.ratingsAverage ??
                                           0,
                                       state
-                                              .productDataDto
+                                              .singleProduct
                                               ?.data
                                               ?.ratingsQuantity ??
                                           0,
                                     ),
                                     descriptionWidget(
-                                      state.productDataDto?.data?.description ??
+                                      state.singleProduct?.data?.description ??
                                           '',
                                     ),
                                     sizesWidget(),
                                     colorsWidget(),
                                     addToCartWidget(
-                                      state.productDataDto?.data?.price ?? 0,
+                                      state.singleProduct?.data?.price ?? 0,
+                                      () {
+                                        cartViewModel.addToCart(productId: productId);
+                                      },
                                     ),
                                   ],
                                 ),
@@ -151,57 +158,57 @@ class _ProductPageState extends State<ProductPage> {
     );
   }
 
-  counterWidget() {
-    return CustomContainer(
-      margin: 0,
-      height: 50,
-      radius: 50,
-      color: AppColor.mainColor,
-      child: Row(
-        children: [
-          GestureDetector(
-            onTap: () {
-              counter--;
-              setState(() {});
-            },
-            child: Container(
-              // alignment: Alignment.center,
-              width: 30,
-              height: 30,
-              decoration: BoxDecoration(
-                border: Border.all(color: AppColor.whiteColor, width: 2),
-                borderRadius: BorderRadius.circular(30),
-                //color: AppColor.whiteColor
-              ),
-              child: Transform.translate(
-                offset: Offset(0, -8),
-                child: Icon(Icons.minimize_rounded, color: AppColor.whiteColor),
-              ),
-            ),
-          ),
-          Spacer(),
-          Text('$counter', style: AppStyle.whiteNormal15),
-          Spacer(),
-          GestureDetector(
-            onTap: () {
-              counter++;
-              setState(() {});
-            },
-            child: Container(
-              alignment: Alignment.center,
-              width: 30,
-              height: 30,
-              decoration: BoxDecoration(
-                border: Border.all(color: AppColor.whiteColor, width: 2),
-                borderRadius: BorderRadius.circular(30),
-              ),
-              child: Icon(Icons.add, color: AppColor.whiteColor),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
+  // counterWidget() {
+  //   return CustomContainer(
+  //     margin: 0,
+  //     height: 50,
+  //     radius: 50,
+  //     color: AppColor.mainColor,
+  //     child: Row(
+  //       children: [
+  //         GestureDetector(
+  //           onTap: () {
+  //             counter--;
+  //             setState(() {});
+  //           },
+  //           child: Container(
+  //             // alignment: Alignment.center,
+  //             width: 30,
+  //             height: 30,
+  //             decoration: BoxDecoration(
+  //               border: Border.all(color: AppColor.whiteColor, width: 2),
+  //               borderRadius: BorderRadius.circular(30),
+  //               //color: AppColor.whiteColor
+  //             ),
+  //             child: Transform.translate(
+  //               offset: Offset(0, -8),
+  //               child: Icon(Icons.minimize_rounded, color: AppColor.whiteColor),
+  //             ),
+  //           ),
+  //         ),
+  //         Spacer(),
+  //         Text('$counter', style: AppStyle.whiteNormal15),
+  //         Spacer(),
+  //         GestureDetector(
+  //           onTap: () {
+  //             counter++;
+  //             setState(() {});
+  //           },
+  //           child: Container(
+  //             alignment: Alignment.center,
+  //             width: 30,
+  //             height: 30,
+  //             decoration: BoxDecoration(
+  //               border: Border.all(color: AppColor.whiteColor, width: 2),
+  //               borderRadius: BorderRadius.circular(30),
+  //             ),
+  //             child: Icon(Icons.add, color: AppColor.whiteColor),
+  //           ),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 
   rateWidget(int sold, num rate, int totalRate) {
     return ProductInfoContainer(
@@ -228,7 +235,12 @@ class _ProductPageState extends State<ProductPage> {
           ),
         ),
 
-        Expanded(child: counterWidget()),
+        Expanded(child: CounterWidget(
+          onChanged: (value) {
+            counter=value;
+            print(counter);
+          },
+        )),
       ],
     );
   }
@@ -305,23 +317,26 @@ class _ProductPageState extends State<ProductPage> {
     );
   }
 
-  addToCartWidget(int price) {
+  addToCartWidget(int price,void Function() onTap) {
     return ProductInfoContainer(
       title: '',
       items: [
         Expanded(
           child: Column(children: [Text('Total Price'), Text('EGP $price')]),
         ),
-        Expanded(
-          flex: 2,
-          child: CustomContainer(
-            color: AppColor.mainColor,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Icon(Icons.shopping_cart_outlined, color: AppColor.whiteColor),
-                Text('Add to cart', style: AppStyle.whiteNormal15),
-              ],
+        GestureDetector(
+          onTap: onTap,
+          child: Expanded(
+            flex: 2,
+            child: CustomContainer(
+              color: AppColor.mainColor,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Icon(Icons.shopping_cart_outlined, color: AppColor.whiteColor),
+                  Text('Add to cart', style: AppStyle.whiteNormal15),
+                ],
+              ),
             ),
           ),
         ),

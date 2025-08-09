@@ -5,10 +5,10 @@ import '../../../core/data_response/data_response.dart';
 
 abstract class WishListDataSource
 {
-  Future<DataResponse<WishListAddEntity>> addToWishList({required String token,
+  Future<DataResponse<WishListAddEntity>> addToWishList({
     required String productId});
-  Future<DataResponse<WishListEntity>> getWishList({required String token});
-  Future<DataResponse<WishListAddEntity>> deleteFromWishList({required String token,
+  Future<DataResponse<WishListEntity>> getWishList();
+  Future<DataResponse<WishListAddEntity>> deleteFromWishList({
   required String productId
   });
 }

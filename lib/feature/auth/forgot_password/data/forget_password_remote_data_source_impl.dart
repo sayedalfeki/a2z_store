@@ -1,9 +1,11 @@
+import 'package:injectable/injectable.dart';
+
 import '../../../../core/api/api_end_points.dart';
 import '../../../../core/api/api_manager.dart';
 import '../../../../core/data_response/data_response.dart';
 import '../domain/forget_password_data_source.dart';
 import '../domain/forget_password_entity.dart';
-
+@Injectable(as: ForgetPassWordDataSource)
 class ForgetPassWordRemoteDataSourceImp extends ForgetPassWordDataSource {
   ApiManager apiManager;
 

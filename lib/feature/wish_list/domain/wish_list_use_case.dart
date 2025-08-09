@@ -8,18 +8,18 @@ class WishListUseCase
 {
   final WishListRepository wishListRepository;
   WishListUseCase({required this.wishListRepository});
-  Future<DataResponse<WishListAddEntity>> addToWishList({required String token,
+  Future<DataResponse<WishListAddEntity>> addToWishList({
     required String productId})async
   {
-    return await wishListRepository.addToWishList(token: token, productId: productId);
+    return await wishListRepository.addToWishList( productId: productId);
   }
-  Future<DataResponse<WishListEntity>> getWishList({required String token})async
+  Future<DataResponse<WishListEntity>> getWishList()async
   {
-    return await wishListRepository.getWishList(token: token);
+    return await wishListRepository.getWishList();
   }
-  Future<DataResponse<WishListAddEntity>> deleteFromWishList({required String token,
+  Future<DataResponse<WishListAddEntity>> deleteFromWishList({
     required String productId
   })async {
-    return await wishListRepository.deleteFromWishList(token: token, productId: productId);
+    return await wishListRepository.deleteFromWishList(productId: productId);
   }
 }

@@ -33,6 +33,10 @@ class StartViewModel extends Cubit<StartState>
     navigatorKey.currentState?.pushNamed(AppRoutes.productRoute,arguments: productId);
     //emit(ChangeIndexStartState());
   }
+  pushToCart()
+  {
+    navigatorKey.currentState?.pushNamed(AppRoutes.cartRoute);
+  }
   void goBack()
   {
     navigatorKey.currentState?.pop();

@@ -6,6 +6,8 @@ import 'package:a_to_z_store/feature/auth/forgot_password/view/forgot_password_p
 import 'package:a_to_z_store/feature/auth/forgot_password/view/reset_code_widget.dart';
 import 'package:a_to_z_store/feature/auth/login/view/login_page.dart';
 import 'package:a_to_z_store/feature/auth/register/view/register_page.dart';
+import 'package:a_to_z_store/feature/cart/ui/view/cart_page.dart';
+import 'package:a_to_z_store/feature/cart/ui/view_model/cart_view_model.dart';
 import 'package:a_to_z_store/feature/product/ui/view/product_page.dart';
 import 'package:a_to_z_store/feature/token_state.dart';
 import 'package:a_to_z_store/feature/token_view_model.dart';
@@ -23,6 +25,7 @@ import 'feature/start/ui/view_model/start_state.dart';
 import 'feature/start/ui/view_model/start_view_model.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
   configureDependencies();
   runApp(MyApp());
@@ -32,6 +35,7 @@ class MyApp extends StatelessWidget {
   MyApp({super.key});
   TokenViewModel tokenViewModel=TokenViewModel();
   final WishListViewModel wishListViewModel = getIt<WishListViewModel>();
+  final CartViewModel cartViewModel = getIt<CartViewModel>();
   StartViewModel startViewModel=StartViewModel();
   //String? token;
   @override
@@ -67,7 +71,7 @@ class MyApp extends StatelessWidget {
                             create:
                                 (context) =>
                                     wishListViewModel
-                                      ..getWishList(token: state.token ?? ''),
+                                      ..getWishList(),
                             child: BlocConsumer<WishListViewModel,WishListState>(
                               listener: (context, state) {
 
@@ -78,7 +82,9 @@ class MyApp extends StatelessWidget {
                                       listener: (context, state) {
 
                                       },
-                                      builder:(context, state) =>  StartPage())),
+                                      builder:(context, state) =>  BlocProvider(
+                                          create: (context) => cartViewModel,
+                                          child: StartPage()))),
                             ),
                           ),
                       AppRoutes.testRoute: (context) => TestPage(),
@@ -88,6 +94,7 @@ class MyApp extends StatelessWidget {
                       AppRoutes.forgotPasswordRoute:
                           (context) => ForgotPasswordPage(),
                       AppRoutes.productRoute: (context) => ProductPage(),
+                      AppRoutes.cartRoute: (context) =>CartPage(),
                     },
                   ):Container()
             );

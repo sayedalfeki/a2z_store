@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../domain/login_request_entity.dart';
 import '../domain/login_use_case.dart';
 import 'login_state.dart';
+@injectable
 class LoginViewModel extends Cubit<LoginState>
 {
   LoginViewModel(this.loginUseCase):super(LoginInitialState());

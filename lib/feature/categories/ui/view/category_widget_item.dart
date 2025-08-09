@@ -2,9 +2,10 @@
 
 import 'package:a_to_z_store/core/utils/colors/color.dart';
 import 'package:a_to_z_store/core/utils/re_usable_widget/custome_container.dart';
-import 'package:a_to_z_store/feature/home/ui/category/domain/category.dart';
+
 import 'package:flutter/material.dart';
 
+import '../../domain/category.dart';
 class CategoryWidgetItem extends StatelessWidget {
   const CategoryWidgetItem({super.key,required this.selected,
   required this.dataEntity

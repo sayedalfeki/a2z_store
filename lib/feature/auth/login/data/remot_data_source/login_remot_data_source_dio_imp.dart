@@ -1,10 +1,12 @@
+import 'package:injectable/injectable.dart';
+
 import '../../../../../core/api/api_end_points.dart';
 import '../../../../../core/api/api_manager.dart';
 import '../../../../../core/data_response/data_response.dart';
 import '../../domain/login_data_source.dart';
 import '../../domain/login_request_entity.dart';
 import '../login_dto.dart';
-
+@Injectable(as:LoginDataSource )
 class LoginRemoteDataSourceDioImp extends LoginDataSource
 {
   late ApiManager apiManager;

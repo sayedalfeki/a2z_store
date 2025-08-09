@@ -1,6 +1,7 @@
-import 'package:a_to_z_store/feature/home/ui/category/domain/category.dart';
+
 import 'package:flutter/material.dart';
 import '../../../../core/utils/colors/color.dart';
+import '../../domain/category.dart';
 import 'category_widget_item.dart';
 class CategoryWidget extends StatelessWidget {
   const CategoryWidget({super.key,required this.categories,

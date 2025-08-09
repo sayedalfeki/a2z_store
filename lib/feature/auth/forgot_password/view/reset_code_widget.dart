@@ -1,3 +1,4 @@
+import 'package:a_to_z_store/core/di/di.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../config/routes/routes.dart';
@@ -12,12 +13,7 @@ import '../domain/forget_password_use_case.dart';
 import '../view_model/forget_password_state.dart';
 import '../view_model/forget_password_view_model.dart';
 class ResetCodeWidget extends StatelessWidget {
-
-  final ForgetPassWordViewModel forgetPassWordViewModel=ForgetPassWordViewModel(
-      ForgetPassWordUseCase(ForgetPassWordRepositoryImpl
-        (ForgetPassWordRemoteDataSourceImp(ApiManager())))
-  );
-
+  final ForgetPassWordViewModel forgetPassWordViewModel=getIt<ForgetPassWordViewModel>();
   ResetCodeWidget({super.key});
   @override
   Widget build(BuildContext context) {

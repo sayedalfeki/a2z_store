@@ -6,16 +6,14 @@ import 'package:a_to_z_store/core/utils/re_usable_widget/error_widget.dart';
 import 'package:a_to_z_store/core/utils/re_usable_widget/loading_widget.dart';
 import 'package:a_to_z_store/core/utils/styles/styles.dart';
 import 'package:a_to_z_store/feature/categories/ui/view/category_image_widget.dart';
-import 'package:a_to_z_store/feature/categories/ui/view/category_widget_item.dart';
-import 'package:a_to_z_store/feature/home/ui/category/domain/category.dart';
-import 'package:a_to_z_store/feature/home/ui/category/view_model/category_state.dart';
-import 'package:a_to_z_store/feature/home/ui/category/view_model/category_view_model.dart';
-import 'package:a_to_z_store/feature/start/ui/view_model/start_view_model.dart';
+
 import 'package:a_to_z_store/feature/sub_category/ui/view/sub_category_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../home/ui/category/view_model/category_view_model.dart';
+
+import '../../domain/category.dart';
+import '../view_model/category_state.dart';
+import '../view_model/category_view_model.dart';
 import 'category_widget.dart';
 
 class CategoryPage extends StatelessWidget {

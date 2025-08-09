@@ -12,20 +12,20 @@ class WishListRepositoryImpl extends WishListRepository
 
   WishListRepositoryImpl({required this.wishListDataSource});
   @override
-  Future<DataResponse<WishListAddEntity>> addToWishList({required String token,
+  Future<DataResponse<WishListAddEntity>> addToWishList({
     required String productId})async
   {
-    return await wishListDataSource.addToWishList(token: token, productId: productId);
+    return await wishListDataSource.addToWishList(productId: productId);
   }
   @override
-  Future<DataResponse<WishListEntity>> getWishList({required String token})async
+  Future<DataResponse<WishListEntity>> getWishList()async
   {
-    return await wishListDataSource.getWishList(token: token);
+    return await wishListDataSource.getWishList();
   }
   @override
-  Future<DataResponse<WishListAddEntity>> deleteFromWishList({required String token,
+  Future<DataResponse<WishListAddEntity>> deleteFromWishList({
     required String productId})async
   {
-    return await wishListDataSource.deleteFromWishList(token: token, productId: productId);
+    return await wishListDataSource.deleteFromWishList( productId: productId);
   }
 }

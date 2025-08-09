@@ -1,8 +1,10 @@
 import 'package:a_to_z_store/feature/auth/register/view_model/register_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 import '../domain/register_use_case.dart';
 import '../request_entity/register_request_entity.dart';
+@injectable
 class RegisterViewModel extends Cubit<RegisterState>
 {
   RegisterViewModel(this.registerUseCase):super(RegisterInitialState());

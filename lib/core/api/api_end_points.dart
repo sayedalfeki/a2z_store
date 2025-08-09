@@ -9,4 +9,5 @@ class ApiEndPoints
   static const String resetCodePath='/auth/verifyResetCode';
   static const String changePasswordPath='/auth/resetPassword';
   static const String wishListPath='/wishlist';
+  static const String cartPath='/cart';
 }
