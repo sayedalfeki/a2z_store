@@ -1,5 +1,4 @@
 import '../domain/login_entity.dart';
-
 class LoginDto extends LoginEntity {
   LoginDto({
     super.statusMsg,
@@ -7,7 +6,6 @@ class LoginDto extends LoginEntity {
     super.errors,
     super.user,
     super.token,});
-
   LoginDto.fromJson(dynamic json) {
     statusMsg = json['statusMsg'];
     message = json['message'];
@@ -18,10 +16,6 @@ class LoginDto extends LoginEntity {
 
   //LoginErrorsDto? errorsDto;
   //LoginUserDto? userDto;
-
-
-
-
 }
 
 /// name : "Sayed Hashem"

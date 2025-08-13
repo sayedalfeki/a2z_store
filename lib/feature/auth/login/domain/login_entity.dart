@@ -11,16 +11,11 @@ class LoginEntity {
       this.errors, 
       this.user, 
       this.token,});
-
-
   String? statusMsg;
   String? message;
   LoginErrors? errors;
   LoginUser? user;
   String? token;
-
-
-
 }
 
 /// name : "Sayed Hashem"
@@ -32,8 +27,6 @@ class LoginUser {
       this.name, 
       this.email, 
       });
-
-
   String? name;
   String? email;
 

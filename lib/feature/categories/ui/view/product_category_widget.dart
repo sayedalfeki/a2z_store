@@ -14,19 +14,9 @@ import '../../../products/ui/view/products_widget.dart';
 import '../../domain/category.dart';
 import '../view_model/category_state.dart';
 import '../view_model/category_view_model.dart';
-
 class ProductCategoryWidget extends StatelessWidget {
   ProductCategoryWidget({super.key});
   final CategoryViewModel categoryViewModel = getIt<CategoryViewModel>();
-  // CategoryViewModel(
-  //   categoryUseCase: CategoryUseCase(
-  //     categoryRepository: CategoryRepositoryImpl(
-  //       categoryDataSource: OnlineCategoryDataSourceImpl(
-  //         apiManager: ApiManager.instance,
-  //       ),
-  //     ),
-  //   ),
-  // );
   List<CategoryDataEntity> categories = [];
   @override
   Widget build(BuildContext context) {
@@ -38,68 +28,64 @@ class ProductCategoryWidget extends StatelessWidget {
         }
       },
       builder:
-          (context, state) => Container(
-            //height:500.h,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(children: [Text('categories',
-                style: AppStyle.blueNormal14,), Spacer(),
-                  Text('view all',style: AppStyle.blueNormal14,)]),
-                SizedBox(height: 15.h),
-                categories.isNotEmpty
-                    ? Container(
-                      height:450.h,
-                      child: Column(
-                        children: [
-                          Expanded(
-                            child: GridView.builder(
-                              gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 4,
-                                    childAspectRatio:
-                                        isLargeWidth(context)
-                                            ? 1
-                                            : 2.25.w / 3.h,
+          (context, state) => Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(children: [Text('categories',
+              style: AppStyle.blueNormal14,), Spacer(),
+                Text('view all',style: AppStyle.blueNormal14,)]),
+              SizedBox(height: 15.h),
+              categories.isNotEmpty
+                  ? Expanded(
+                    child: Column(
+                      children: [
+                        Expanded(
+                          child: GridView.builder(
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 4,
+                                  childAspectRatio:
+                                      isLargeWidth(context)
+                                          ? 1
+                                          : 2.25.w / 3.h,
+                                ),
+                            itemCount:8,
+                            itemBuilder:
+                                (context, index) => GestureDetector(
+                                  onTap: () {
+                                    categoryViewModel.changeSelectedIndex(
+                                      index,
+                                    );
+                                  },
+                                  child: ProductCategoryItemWidget(
+                                    dataEntity: categories[index],
                                   ),
-                              itemCount:8,
-                              itemBuilder:
-                                  (context, index) => GestureDetector(
-                                    onTap: () {
-                                      categoryViewModel.changeSelectedIndex(
-                                        index,
-                                      );
-                                    },
-                                    child: ProductCategoryItemWidget(
-                                      dataEntity: categories[index],
-                                    ),
-                                  ),
-                            ),
+                                ),
                           ),
-                          SizedBox(height: 15.h,),
-                          Expanded(
-                            child: ProductsWidget(
-                              categoryName:
-                                  categories[categoryViewModel.selectedIndex]
-                                      .name ??
-                                  '',
-                              categoryId: categories[categoryViewModel.selectedIndex].id??'',
-                            ),
+                        ),
+                        SizedBox(height: 15.h,),
+                        Expanded(
+                          child: ProductsWidget(
+                            categoryName:
+                                categories[categoryViewModel.selectedIndex]
+                                    .name ??
+                                '',
+                            categoryId: categories[categoryViewModel.selectedIndex].id??'',
                           ),
-                        ],
-                      ),
-                    )
-                    : state is CategoryLoadingState
-                    ? LoadingWidget()
-                    : state is CategoryErrorState
-                    ? AppErrorWidget(error: state.errorMessage,
-                onPressed: () {
-                  categoryViewModel.getCategories();
-                },
-                )
-                    : Container(),
-              ],
-            ),
+                        ),
+                      ],
+                    ),
+                  )
+                  : state is CategoryLoadingState
+                  ? LoadingWidget()
+                  : state is CategoryErrorState
+                  ? AppErrorWidget(error: state.errorMessage,
+              onPressed: () {
+                categoryViewModel.getCategories();
+              },
+              )
+                  : Container(),
+            ],
           ),
     );
   }

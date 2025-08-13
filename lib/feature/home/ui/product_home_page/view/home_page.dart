@@ -13,19 +13,10 @@ class ProductHomePage extends StatelessWidget {
     return Column(
       //crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Container(
-            height: 200.h,
-            child: AdsWidget()),
-         ProductCategoryWidget(),
-
-        // Expanded(
-        //   flex: 2,
-        //   child: Container(
-        //     color: Colors.red,
-        //   ),
-        // )
-        // Expanded(
-        //     flex: 2,
+        Expanded(child: AdsWidget()),
+        Expanded(
+            flex: 3,
+            child: ProductCategoryWidget()),
       ],
     );
   }

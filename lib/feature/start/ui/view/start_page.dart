@@ -54,6 +54,14 @@ class StartPage extends StatelessWidget {
               toolbarHeight:50.h,
               title:   Text(AppStrings.appSlogan,
                 style: AppStyle.sloganStyle,),
+              actions: [
+                Visibility(
+                  visible: startViewModel.selectedIndex>2,
+                  child: IconButton(onPressed: () {
+                    startViewModel.logoutUser();
+                  }, icon: Icon(Icons.logout)),
+                )
+              ],
             ),
             body:Padding(
               padding:EdgeInsets.only(left: 8,right: 8),

@@ -8,51 +8,73 @@ class DiscountWidget extends StatelessWidget {
  final int index;
   @override
   Widget build(BuildContext context) {
-    return  Container(
-      //color: Colors.red,
-      padding: EdgeInsets.all(8),
-      width:MediaQuery.sizeOf(context).width*.5,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children:
-        [
-          Text(
-            'up to 25% OFF',
-            style:
-            index % 2 == 0
-                ? AppStyle.blueBold18.copyWith(
-              fontSize:22.sp,
-            )
-                : AppStyle.whiteBold18.copyWith(
-                fontSize:22.sp
-            ),
+    return  Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children:
+      [
+        Flexible(
+         // flex: 2,
+          child: ListView(
+
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      'up to 25% OFF',
+                      style:
+                      index % 2 == 0
+                          ? AppStyle.blueBold18.copyWith(
+                        fontSize:18,
+                      )
+                          : AppStyle.whiteBold18.copyWith(
+                          fontSize:18
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      'For all Headphones & AirPods',
+                      style:
+                      index % 2 == 0
+                          ? AppStyle.blueBold18.copyWith(
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.normal
+                      )
+                          : AppStyle.whiteBold18.copyWith(
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.normal
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
-          Text(
-            'For all Headphones & AirPods',
-            style:
-            index % 2 == 0
-                ? AppStyle.blueBold18.copyWith(
-                fontSize: 14.sp,
-                fontWeight: FontWeight.normal
-            )
-                : AppStyle.whiteBold18.copyWith(
-                fontSize: 14.sp,
-                fontWeight: FontWeight.normal
-            ),
-          ),
-          CustomContainer(
+        ),
+        // Expanded(
+        //  // flex: 2,
+        //
+        // ),
+        Flexible(
+          child: CustomContainer(
             borderColor: AppColor.transparentColor,
             color: AppColor.mainColor,
-            padding:8,
+            padding:0,
             radius: 4,
+            margin: 4,
             child: Text('shop now',
                 style: AppStyle.whiteBold18.copyWith(
                     fontSize: 14.sp
                 )),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
