@@ -8,9 +8,7 @@ class ForgetPassWordViewModel extends Cubit<ForgetPassWordState> {
   ForgetPassWordUseCase forgetPassWordUseCase;
   ForgetPassWordViewModel(this.forgetPassWordUseCase)
     : super(ForgetPassWordInitialState());
-  TextEditingController emailController = TextEditingController(
-    text: 'selfeki207@gmail.com',
-  );
+  TextEditingController emailController = TextEditingController();
   TextEditingController newPasswordController = TextEditingController();
   TextEditingController resetCodeController = TextEditingController();
   var formKey = GlobalKey<FormState>();

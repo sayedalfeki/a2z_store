@@ -10,8 +10,8 @@ class LoginViewModel extends Cubit<LoginState>
 {
   LoginViewModel(this.loginUseCase):super(LoginInitialState());
   LoginUseCase loginUseCase;
-  TextEditingController emailController=TextEditingController(text: 'sayed@gmail.com');
-  TextEditingController passwordController=TextEditingController(text: '123456');
+  TextEditingController emailController=TextEditingController();
+  TextEditingController passwordController=TextEditingController();
   var loginKey=GlobalKey<FormState>();
   bool isPasswordShowed=false;
   changeIsPasswordShowed()

@@ -12,11 +12,11 @@ class RegisterViewModel extends Cubit<RegisterState>
 {
   RegisterViewModel(this.registerUseCase):super(RegisterInitialState());
   late RegisterUseCase registerUseCase;
-  TextEditingController userNameController=TextEditingController(text: 'sayed');
-  TextEditingController emailController=TextEditingController(text: 'sayed@gmail.com');
-  TextEditingController passWordController=TextEditingController(text: '123456');
-  TextEditingController confirmPassWordController=TextEditingController(text: '123456');
-  TextEditingController phoneController=TextEditingController(text: '0112345678');
+  TextEditingController userNameController=TextEditingController();
+  TextEditingController emailController=TextEditingController();
+  TextEditingController passWordController=TextEditingController();
+  TextEditingController confirmPassWordController=TextEditingController();
+  TextEditingController phoneController=TextEditingController();
   var formKey=GlobalKey<FormState>();
   bool isPasswordShowed=false;
   changeIsPasswordShowed()
