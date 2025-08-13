@@ -1,9 +1,10 @@
+import 'dart:io';
+
 import 'package:a_to_z_store/config/routes/routes.dart';
 import 'package:a_to_z_store/feature/start/ui/view_model/start_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 class StartViewModel extends Cubit<StartState>
 {
   StartViewModel():super(StartInitState());
@@ -40,5 +41,11 @@ class StartViewModel extends Cubit<StartState>
   void goBack()
   {
     navigatorKey.currentState?.pop();
+  }
+  logoutUser()async
+  {
+    SharedPreferences sharedPreferences=await SharedPreferences.getInstance();
+    await sharedPreferences.remove('token');
+    exit(0);
   }
 }
