@@ -30,127 +30,126 @@ class CategoryPage extends StatelessWidget {
           categories=state.categories;
         }
       },
-      builder:(context, state) =>  Expanded(
-        child: categories.isNotEmpty?
-        Row(
-          crossAxisAlignment:CrossAxisAlignment.stretch ,
-          children: [
-            Expanded(child:
-                CategoryWidget(
-                  categories:categories,
-                  selectedIndex:categoryViewModel.selectedIndex,
-                  onCategoryItemTap: (index) {
-                       categoryViewModel.changeSelectedIndex(index);
-                       },
-                )
-            // Container(
-            //  // padding: EdgeInsets.only(top: 4),
-            //   margin: EdgeInsets.all(5),
-            //   decoration: BoxDecoration(
-            //     border: Border(
-            //       top: BorderSide(color: AppColor.mainColor),
-            //       left:BorderSide(color: AppColor.mainColor),
-            //     ),
-            //     borderRadius: BorderRadius.only(topLeft: Radius.circular(16)),
-            //     color: AppColor.categoryContainerColor
-            //   ),
-            //   child: ListView.builder(
-            //     itemCount: categories.length,
-            //     itemBuilder: (context, index) {
-            //     return GestureDetector(
-            //       onTap: () {
-            //         categoryViewModel.changeSelectedIndex(index);
-            //       },
-            //       child: CategoryWidgetItem(selected:
-            //       index==categoryViewModel.selectedIndex,
-            //       dataEntity: categories[index],
-            //       ),
-            //     );
-            //   },),
-            // )
-            ),
-            //SizedBox(width: 5,),
-            Expanded(
-                flex: 2,
-                child: Column(
-              children: [
-                Expanded(child:CategoryImageWidget
-                  (categoryName:categories[categoryViewModel.selectedIndex].name??'' ,
-                    imagePath:categories[categoryViewModel.selectedIndex].image??'')
+      builder:(context, state) =>  categories.isNotEmpty?
+      Row(
+       // crossAxisAlignment:CrossAxisAlignment.stretch ,
+        children: [
+          Expanded(
+              flex: 2,
+              child:
+              CategoryWidget(
+                categories:categories,
+                selectedIndex:categoryViewModel.selectedIndex,
+                onCategoryItemTap: (index) {
+                     categoryViewModel.changeSelectedIndex(index);
+                     },
+              )
+          // Container(
+          //  // padding: EdgeInsets.only(top: 4),
+          //   margin: EdgeInsets.all(5),
+          //   decoration: BoxDecoration(
+          //     border: Border(
+          //       top: BorderSide(color: AppColor.mainColor),
+          //       left:BorderSide(color: AppColor.mainColor),
+          //     ),
+          //     borderRadius: BorderRadius.only(topLeft: Radius.circular(16)),
+          //     color: AppColor.categoryContainerColor
+          //   ),
+          //   child: ListView.builder(
+          //     itemCount: categories.length,
+          //     itemBuilder: (context, index) {
+          //     return GestureDetector(
+          //       onTap: () {
+          //         categoryViewModel.changeSelectedIndex(index);
+          //       },
+          //       child: CategoryWidgetItem(selected:
+          //       index==categoryViewModel.selectedIndex,
+          //       dataEntity: categories[index],
+          //       ),
+          //     );
+          //   },),
+          // )
+          ),
+          //SizedBox(width: 5,),
+          Expanded(
+              flex:3,
+              child: Column(
+            children: [
+              Expanded(child:CategoryImageWidget
+                (categoryName:categories[categoryViewModel.selectedIndex].name??'' ,
+                  imagePath:categories[categoryViewModel.selectedIndex].image??'')
 
-               // Container(
-               //    padding: EdgeInsets.all(8),
-               //      decoration: BoxDecoration(
-               //        image: DecorationImage(image:NetworkImage(
-               //          categories[categoryViewModel.selectedIndex].image
-               //              ??''
-               //        ),
-               //        fit: BoxFit.cover
-               //        )
-               //      ),
-               //      child: Column(
-               //        crossAxisAlignment: CrossAxisAlignment.stretch,
-               //        mainAxisAlignment: MainAxisAlignment.center,
-               //        children: [
-               //          Expanded(
-               //            child: Row(
-               //              children: [
-               //                Container(
-               //                 // color: Colors.red,
-               //                  width:66.w,
-               //                  child: Expanded(
-               //                    child: Text(
-               //                    categories[categoryViewModel.selectedIndex].name??''
-               //                    ,style: AppStyle.blueBold18.copyWith(
-               //                      fontSize:20,
-               //                      fontWeight: FontWeight.bold
-               //                    ),),
-               //                  ),
-               //                ),
-               //              ],
-               //            ),
-               //          ),
-               //          Row(
-               //            children: [
-               //              CustomContainer(
-               //                color: AppColor.mainColor,
-               //                child: Text('shop now'),
-               //              ),
-               //            ],
-               //          )
-               //          //Image.asset(AppImages.ad1Image),
-               //        ],
-               //      ))
+             // Container(
+             //    padding: EdgeInsets.all(8),
+             //      decoration: BoxDecoration(
+             //        image: DecorationImage(image:NetworkImage(
+             //          categories[categoryViewModel.selectedIndex].image
+             //              ??''
+             //        ),
+             //        fit: BoxFit.cover
+             //        )
+             //      ),
+             //      child: Column(
+             //        crossAxisAlignment: CrossAxisAlignment.stretch,
+             //        mainAxisAlignment: MainAxisAlignment.center,
+             //        children: [
+             //          Expanded(
+             //            child: Row(
+             //              children: [
+             //                Container(
+             //                 // color: Colors.red,
+             //                  width:66.w,
+             //                  child: Expanded(
+             //                    child: Text(
+             //                    categories[categoryViewModel.selectedIndex].name??''
+             //                    ,style: AppStyle.blueBold18.copyWith(
+             //                      fontSize:20,
+             //                      fontWeight: FontWeight.bold
+             //                    ),),
+             //                  ),
+             //                ),
+             //              ],
+             //            ),
+             //          ),
+             //          Row(
+             //            children: [
+             //              CustomContainer(
+             //                color: AppColor.mainColor,
+             //                child: Text('shop now'),
+             //              ),
+             //            ],
+             //          )
+             //          //Image.asset(AppImages.ad1Image),
+             //        ],
+             //      ))
 
 
-                ),
-
-                Expanded(
-                    flex: 3,
-                     child:SubCategoryWidget(categoryId:
-                     categories[categoryViewModel.selectedIndex].id??'')
-                    // GridView.builder(
-                    // gridDelegate:SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount:3),
-                    // itemBuilder: (context, index) {
-                    //   return Container(
-                    //     child: Image.asset(AppImages.ad2Image),
-                    //   );
-                    // },)
-                    )
-              ],
-            ))
-          ],
-        ):
-        state is CategoryLoadingState?
-        LoadingWidget():
-        state is CategoryErrorState?
-        AppErrorWidget(error: state.errorMessage,
-          onPressed: () {
-            categoryViewModel.getCategories();
-          },
-        ):CustomContainer(
-          child: Text('no categories founded'),
-        ),
+              ),
+              Expanded(
+                  flex: 3,
+                   child:SubCategoryWidget(categoryId:
+                   categories[categoryViewModel.selectedIndex].id??'')
+                  // GridView.builder(
+                  // gridDelegate:SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount:3),
+                  // itemBuilder: (context, index) {
+                  //   return Container(
+                  //     child: Image.asset(AppImages.ad2Image),
+                  //   );
+                  // },)
+                  )
+            ],
+          ))
+        ],
+      ):
+      state is CategoryLoadingState?
+      LoadingWidget():
+      state is CategoryErrorState?
+      AppErrorWidget(error: state.errorMessage,
+        onPressed: () {
+          categoryViewModel.getCategories();
+        },
+      ):CustomContainer(
+        child: Text('no categories founded'),
       ),
     );
   }

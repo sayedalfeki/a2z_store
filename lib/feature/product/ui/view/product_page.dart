@@ -29,6 +29,7 @@ class _ProductPageState extends State<ProductPage> {
   SingleProductViewModel singleProductViewModel =
       getIt<SingleProductViewModel>();
   List<SingleProductDataEntity> wishes=[];
+  ValueNotifier<int> valueNotifier=ValueNotifier(0);
   @override
   Widget build(BuildContext context) {
     String productId = ModalRoute.of(context)!.settings.arguments as String;
@@ -111,10 +112,10 @@ class _ProductPageState extends State<ProductPage> {
                                   children: [
                                     nameWidget(
                                       state.singleProduct?.data?.title ?? '',
-                                      state.singleProduct?.data?.price ?? 0,
+                                      state.singleProduct?.data?.price?.toInt() ?? 0,
                                     ),
                                     rateWidget(
-                                      state.singleProduct?.data?.sold ?? 0,
+                                      state.singleProduct?.data?.sold?.toInt() ?? 0,
                                       state
                                               .singleProduct
                                               ?.data
@@ -123,7 +124,7 @@ class _ProductPageState extends State<ProductPage> {
                                       state
                                               .singleProduct
                                               ?.data
-                                              ?.ratingsQuantity ??
+                                              ?.ratingsQuantity?.toInt() ??
                                           0,
                                     ),
                                     descriptionWidget(
@@ -133,7 +134,7 @@ class _ProductPageState extends State<ProductPage> {
                                     sizesWidget(),
                                     colorsWidget(),
                                     addToCartWidget(
-                                      state.singleProduct?.data?.price ?? 0,
+                                      state.singleProduct?.data?.price?.toInt() ?? 0,
                                       () {
                                         cartViewModel.addToCart(productId: productId);
                                       },
@@ -236,10 +237,11 @@ class _ProductPageState extends State<ProductPage> {
         ),
 
         Expanded(child: CounterWidget(
-          onChanged: (value) {
-            counter=value;
-            print(counter);
-          },
+          valueNotifier: valueNotifier,
+          // onChanged: (value) {
+          //   counter=value;
+          //   print(counter);
+          // },
         )),
       ],
     );

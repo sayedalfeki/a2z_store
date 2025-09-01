@@ -51,16 +51,16 @@ class SingleProductDataEntity {
   //   }
   //   id = json['id'];
   // }
-  int? sold;
+  num? sold;
   List<String>? images;
   //List<SingleProductSubcategoryEntity>? subcategory;
-  int? ratingsQuantity;
+  num? ratingsQuantity;
   String? productId;
   String? title;
   String? slug;
   String? description;
   //int? quantity;
-  int? price;
+  num? price;
  String? imageCover;
   //SingleProductCategoryEntity? category;
  // SingleProductBrandEntity? brand;

@@ -6,6 +6,7 @@ import 'package:a_to_z_store/feature/sub_category/ui/view_model/sub_category_sta
 import 'package:a_to_z_store/feature/sub_category/ui/view_model/sub_category_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/utils/images/images.dart';
 import '../../../../core/utils/re_usable_widget/custome_container.dart';
 class SubCategoryWidget extends StatelessWidget {
@@ -25,7 +26,7 @@ final SubCategoryViewModel subCategoryViewModel=getIt<SubCategoryViewModel>();
       },
       builder:(context, state) =>subCategories.isNotEmpty?  GridView.builder(
         gridDelegate:SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount:3,
-        childAspectRatio: 2/3
+        childAspectRatio: 2/4
         ),
         itemCount: subCategories.length,
         itemBuilder: (context, index) {
@@ -33,7 +34,7 @@ final SubCategoryViewModel subCategoryViewModel=getIt<SubCategoryViewModel>();
             children: [
               CustomContainer(
                 borderColor: Colors.transparent,
-                height:100,
+                //height:100.h,
                   padding: 0,
                   child: Image.asset(AppImages.ad2Image,fit: BoxFit.cover,)),
               Text(subCategories[index].name??'')

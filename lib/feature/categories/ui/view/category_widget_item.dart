@@ -4,6 +4,7 @@ import 'package:a_to_z_store/core/utils/colors/color.dart';
 import 'package:a_to_z_store/core/utils/re_usable_widget/custome_container.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../domain/category.dart';
 class CategoryWidgetItem extends StatelessWidget {
@@ -35,13 +36,13 @@ final CategoryDataEntity dataEntity;
               borderColor: Colors.transparent,
               padding: 0,
               margin:8,
-              width:7,
-              height:90,
+             // width:7,
+              height:90.h,
               color:selected?AppColor.mainColor:AppColor.transparentColor,
               radius: 35,
             ),
           ),
-          Text(dataEntity.name??'')
+          Expanded(child: Text(dataEntity.name??''))
         ],
       ),
     );

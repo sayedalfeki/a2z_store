@@ -52,7 +52,7 @@ class WishListItemWidget extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Text(wishListDataEntity.title??'',style: AppStyle.blackNormal20.copyWith(
-                        fontSize: 14
+                        fontSize: 14.sp
                       ),),
                     ),
                     Spacer(),

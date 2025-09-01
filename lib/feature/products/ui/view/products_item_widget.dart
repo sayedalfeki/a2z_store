@@ -75,11 +75,14 @@ final void Function() onAddToCartClicked;
                     GestureDetector(
                       onTap:onAddToCartClicked ,
                       child: CustomContainer(
-                          width: 50,
-                          height: 50,
+                          //width: 50,
+                         // height: 50,
                           radius: 25,
+                          margin: 0,
                           color: AppColor.mainColor,
-                          child: Icon(Icons.add,color: AppColor.whiteColor,)),
+                          child: Icon(Icons.add,color: AppColor.whiteColor,
+                          size:20,
+                          )),
                     )
                   ],
                 )

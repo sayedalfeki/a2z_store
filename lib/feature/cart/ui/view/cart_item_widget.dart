@@ -7,7 +7,6 @@ import 'package:a_to_z_store/feature/cart/domain/cart_entity.dart';
 import 'package:a_to_z_store/feature/wish_list/domain/wish_list_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../core/utils/re_usable_widget/counter_widget.dart';
 import '../../../product/domain/Single_product_entity.dart';
 class CartItemWidget extends StatelessWidget {
@@ -16,11 +15,12 @@ class CartItemWidget extends StatelessWidget {
   final SingleProductDataEntity? cartProductEntity;
   final void Function() onDelete;
  // int counter = 1;
+  ValueNotifier<int> valueNotifier=ValueNotifier(0);
   @override
   Widget build(BuildContext context) {
     return CustomContainer(
       padding: 0,
-      height: 150.h,
+      //height: 150.h,
       child: Row(
         //crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -33,14 +33,14 @@ class CartItemWidget extends StatelessWidget {
               //color: Colors.red,
               //  width: 100,
               //  height: 100,
-              image: DecorationImage(
-                image:
-                    cartProductEntity == null
-                        ? AssetImage(AppImages.ad1Image)
-                        : NetworkImage(cartProductEntity?.imageCover ?? ''),
-                fit: BoxFit.cover,
-              ),
-              //child:Image.asset(AppImages.ad1Image,fit: BoxFit.cover,)
+              // image: DecorationImage(
+              //   image:
+              //       cartProductEntity == null
+              //           ? AssetImage(AppImages.ad1Image)
+              //           : NetworkImage(cartProductEntity?.imageCover ?? ''),
+              //   fit: BoxFit.cover,
+              // ),
+              child:Image.network(cartProductEntity?.imageCover??'',fit: BoxFit.cover,)
             ),
           ),
           Expanded(
@@ -94,7 +94,12 @@ class CartItemWidget extends StatelessWidget {
                     //crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                        Expanded(child: Text('3500')),
-                      Expanded(child: CounterWidget()),
+                      Expanded(child: CounterWidget(
+                        valueNotifier: valueNotifier,
+                      )),
+                      // ElevatedButton(onPressed: () {
+                      //   print(valueNotifier.value);
+                      // }, child: Text('click'))
                     ],
                   ),
                 ],

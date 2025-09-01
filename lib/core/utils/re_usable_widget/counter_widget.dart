@@ -3,14 +3,25 @@ import '../colors/color.dart';
 import '../styles/styles.dart';
 import 'custome_container.dart';
 class CounterWidget extends StatefulWidget {
-  const CounterWidget({super.key,this.onChanged});
-  final void Function(int value)? onChanged;
+   CounterWidget({super.key,required this.valueNotifier});
+ // final void Function(int value)? onChanged;
+  ValueNotifier<int> valueNotifier;
   @override
   State<CounterWidget> createState() => _CounterWidgetState();
 }
 
 class _CounterWidgetState extends State<CounterWidget> {
   int counter=1;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    widget.valueNotifier.addListener(() {
+      setState(() {
+
+      });
+    },);
+  }
   @override
   Widget build(BuildContext context) {
      return CustomContainer(
@@ -22,11 +33,12 @@ class _CounterWidgetState extends State<CounterWidget> {
         children: [
           GestureDetector(
             onTap: () {
-              counter--;
-              if(widget.onChanged!=null) {
-                widget.onChanged!(counter);
-              }
-              setState(() {});
+              widget.valueNotifier.value--;
+              // counter--;
+              // if(widget.onChanged!=null) {
+              //   widget.onChanged!(counter);
+              // }
+              // setState(() {});
             },
             child: Container(
               // alignment: Alignment.center,
@@ -44,15 +56,16 @@ class _CounterWidgetState extends State<CounterWidget> {
             ),
           ),
           Spacer(),
-          Text('$counter', style: AppStyle.whiteNormal15),
+          Text('${widget.valueNotifier.value}', style: AppStyle.whiteNormal15),
           Spacer(),
           GestureDetector(
             onTap: () {
-              counter++;
-              if(widget.onChanged!=null) {
-                widget.onChanged!(counter);
-              }
-               setState(() {});
+              widget.valueNotifier.value++;
+              // counter++;
+              // if(widget.onChanged!=null) {
+              //   widget.onChanged!(counter);
+              // }
+              //  setState(() {});
             },
             child: Container(
               alignment: Alignment.center,
